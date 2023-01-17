@@ -11,7 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Register the database
-builder.Services.AddDbContext<ContactApiDbContext>(options => options.UseInMemoryDatabase("ContactDb"));
+//builder.Services.AddDbContext<ContactApiDbContext>(options => options.UseInMemoryDatabase("ContactDb"));
+
+builder.Services.AddDbContext<ContactApiDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("ContactsApiConnString")));
 
 var app = builder.Build();
 
